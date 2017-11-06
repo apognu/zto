@@ -1,0 +1,53 @@
+name: zto
+version: "0.1.0"
+author: Antoine POPINEAU <antoine.popineau@appscho.com>
+about: Control ZeroTier One node and controller
+
+subcommands:
+  - peer:
+      about: control peers your are connected to
+      subcommands:
+        - list:
+            about: list all peers
+  
+  - network:
+      about: control networks you are connected to
+      subcommands:
+        - list:
+           about: list all networks
+        - join:
+            about: join a network from its ID
+            args:
+              - NETWORK_ID:
+                  help: network ID to join
+                  required: true
+        - leave:
+            about: leave a network from its ID
+            args:
+              - NETWORK_ID:
+                  help: network ID to leave
+                  required: true
+  
+  - controller:
+      about: administer your networks
+      args:
+        - NETWORK_ID:
+            help: network ID to administer
+            required: true
+      subcommands:
+        - members:
+            about: list members of the network
+        - authorize:
+            about: authorize a member to join the network
+            args:
+              - NODE_ID:
+                  help: node ID to authorize
+                  required: true
+        - deauthorize:
+            about: authorize a member to join the network
+            args:
+              - NODE_ID:
+                  help: node ID to authorize
+                  required: true
+        - create:
+            about: create a managed network
